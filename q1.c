@@ -1,4 +1,4 @@
-// Implement stack using linkedlist
+// implement stack using linkedlist
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -8,48 +8,31 @@ struct node{
 };
 struct node *head = NULL;
 
+
 void push(int element){
-    struct node *current = head;
-    struct node *newnode = (struct node*)malloc(sizeof(struct node));
+    struct node *newnode = (struct node*) malloc(sizeof(struct node));
     newnode->data = element;
-    newnode->next = NULL;
-    if (current!=NULL){
-        while (current->next!=NULL){
-            current = current->next;
-        }
-        current->next = newnode;
-    }else{
-        head = newnode;
-    }
+    newnode->next = head;
+    head = newnode;
 }
+
 
 void pop(){
-    if (head==NULL){
-        printf("stack underflow");
+    if(head!=NULL){
+        struct node *temp = head;
+        printf("\n%d", temp->data);
+        // free(temp);
+        head = head->next;
     }else{
-        struct node *current = head;
-        while (current->next!=NULL){
-            current = current->next;
-        }
-        printf("%d", current->next->data);
-        free(current->next);
-        current=NULL;
+        printf("\nstack underflow");
     }
 }
 
-void view_stack(){
-    struct node *current = head;
-    current = current->next;
-    while(current!=NULL){
-        printf("%d ", current->data);
-        current = current->next;
-    }
-    // printf("%d ", current->data);
-}
+
 
 int main(){
     while(1){
-        printf("\n\nchoose operation\n1. push\n2. pop\n3. view stack\n4. exit\n\t=>");
+        printf("\n\nchoose operation\n1. push\n2. pop\n99. exit\n\t=>");
         int choice;
         scanf("%d", &choice);
         switch (choice)
@@ -63,10 +46,7 @@ int main(){
         case 2:
             pop();
             break;
-        case 3:
-            view_stack();
-            break;
-        case 4:
+        case 99:
             return 0;
         default:
             printf("invalid option");
