@@ -3,6 +3,7 @@
 logic
     1. traverse through the linkedlist and find the total number of nodes
     2. travel n/2 number of nodes from head to attain the middle node
+    NOTE: in case of odd number of nodes in LL, the n-1/2 th element will be displayed
 */
 #include<stdio.h>
 #include<stdlib.h>
@@ -13,13 +14,30 @@ struct node{
 };
 struct node *head = NULL;
 
-
+/*
 void push(int element){
     struct node *newnode = (struct node*) malloc(sizeof(struct node));
     newnode->data = element;
     newnode->next = head;
     head = newnode;
 }
+
+/*
+void push(int element){
+    struct node *newnode = (struct node*) malloc(sizeof(struct node));
+    newnode->data = element;
+    newnode->next = NULL;
+    if (head==NULL){
+        head = newnode;
+    }else{
+        struct node *current = head;
+        while (current->next != NULL){
+            current = current->next;
+        }
+        current->next = newnode;
+    }
+}
+*/
 
 
 
