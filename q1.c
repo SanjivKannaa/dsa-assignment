@@ -19,7 +19,7 @@ void push(int element){
         }
         current->next = newnode;
     }else{
-        current = newnode;
+        head = newnode;
     }
 }
 
