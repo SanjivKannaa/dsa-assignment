@@ -14,7 +14,7 @@ struct node{
 };
 struct node *head = NULL;
 
-/*
+
 void push(int element){
     struct node *newnode = (struct node*) malloc(sizeof(struct node));
     newnode->data = element;
