@@ -32,7 +32,7 @@ void pop(){
 
 int main(){
     while(1){
-        printf("\n\nchoose operation\n1. push\n2. pop\n99. exit\n\t=>");
+        printf("\n\nchoose operation\n1. push\n2. pop\n99. exit\n=>");
         int choice;
         scanf("%d", &choice);
         switch (choice)
