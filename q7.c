@@ -37,6 +37,7 @@ struct node* push_private_ll(int element){
 }
 
 void reverse(){
+    private_head = NULL;
     while(head!=NULL){
         struct node *temp = head;
         push_private_ll(temp->data);

@@ -12,6 +12,8 @@ logic
                 pass
             else
                 incorrect balancing
+            if stack empty
+                incorrect balancing
     5. after input string is over
         if stack is empty
             correct balancing
@@ -64,6 +66,7 @@ int main(){
             push(input_string[i]);
         }
         if (input_string[i]==')' || input_string[i]==']' || input_string[i]=='}'){
+            if(head==NULL){printf("symbols unbalanced");return 0;}
             char pop_value = pop();
             if (pop_value!=get_pair(input_string[i])){
                 printf("symbols unbalanced %c", input_string[i]);
@@ -71,6 +74,10 @@ int main(){
             }
         }
     }
-    printf("symbols balanced");
+    if (head==NULL){
+        printf("symbols balanced");
+    }else{
+        printf("symbols unbalanced");
+    }
     return 0;
 }
