@@ -2,35 +2,44 @@
 /*
 doing a double loop though the linkedlist and checking if an memory address comes again
 */
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct node{
+struct node
+{
     int data;
     struct node *next;
 };
 struct node *head = NULL;
 
-void push(int element){
-    struct node *newnode = (struct node*) malloc(sizeof(struct node));
+void push(int element)
+{
+    struct node *newnode = (struct node *)malloc(sizeof(struct node));
     newnode->data = element;
     newnode->next = NULL;
-    if (head==NULL){
+    if (head == NULL)
+    {
         head = newnode;
-    }else{
+    }
+    else
+    {
         struct node *current = head;
-        while (current->next != NULL){
+        while (current->next != NULL)
+        {
             current = current->next;
         }
         current->next = newnode;
     }
 }
 
-void pop(){
+void pop()
+{
     struct node *current = head;
     struct node *temp;
-    if (current!=NULL){
-        while(current->next!=NULL){
+    if (current != NULL)
+    {
+        while (current->next != NULL)
+        {
             temp = current;
             current = current->next;
         }
@@ -40,12 +49,16 @@ void pop(){
     }
 }
 
-int check_loop(){
+int check_loop()
+{
     struct node *current1 = head;
-    while (current1->next->next!=NULL){
+    while (current1->next->next != NULL)
+    {
         struct node *current2 = current1->next;
-        while (current2->next!=NULL){
-            if (current1==current2){
+        while (current2->next != NULL)
+        {
+            if (current1 == current2)
+            {
                 printf("Loop exists");
                 return 0;
             }
@@ -55,11 +68,12 @@ int check_loop(){
     }
     printf("no loop");
     return 0;
-    
 }
 
-int main(){
-    while(1){
+int main()
+{
+    while (1)
+    {
         printf("\n\nchoose operation\n1. push\n2. pop\n3. check for loops\n99. exit\n=>");
         int choice;
         scanf("%d", &choice);

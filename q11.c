@@ -7,92 +7,52 @@ maintain 2 loops through the linkedlists and find if any address or data matches
 
 
 
-
-struct node{
-    int data;
-    struct node *next;
+struct node {
+	int data;
+	struct node* next;
 };
+
+
 struct node *head1=NULL;
 struct node *head2=NULL;
 
 
-
-void insert_last(struct node *root, int element){
-    struct node *newnode = (struct node*) malloc(sizeof(struct node));
-    newnode->data = element;
-    newnode->next = NULL;
-    struct node *current = root;
-    if(current!=NULL){
-        while (current->next!=NULL){
-            current = current->next;
-        }
-        current->next = newnode;
-    }else{
-        root=newnode;
-    }
+struct node* getintersection(struct node* head1, struct node* head2){
+	while (head2){
+		struct node* temp = head1;
+		while (temp){
+			if (temp == head2)
+				return head2;
+			temp = temp->next;
+		}
+		head2 = head2->next;
+	}
+	return NULL;
 }
-
-
-void delete_last(struct node *root){
-    struct node *current = root;
-    struct node *temp;
-    if (current!=NULL){
-        while(current->next!=NULL){
-            temp = current;
-            current = current->next;
-        }
-        temp->next = NULL;
-        printf("%d ", current->data);
-        free(current);
-    }
-}
-
-
-
-void check(){
-    struct node *current1 = head1;
-    struct node *current2 = head2;
-    while(current1!=NULL){
-        while(current2!=NULL){
-            if (current1->data == current2->data){
-                printf("Intersection at value : %d", current1->data);
-            }
-            current2 = current2->next;
-        }
-        current1 = current1->next;
-    }
-}
-
 
 int main(){
-    while(1){
-        printf("\n\nchoose operation\n1. inert to LL 1\n2. remove from LL 1\n3. push to LL 2\n4. pop to lL 2\n5. check for intersection\n99. exit\n=>");
-        int choice, element;
-        scanf("%d", &choice);
-        switch (choice){
-        case 1:
-            printf("enter the element: ");
-            scanf("%d", &element);
-            insert_last(head1, element);
-            break;
-        case 2:
-            delete_last(head1);
-            break;
-        case 3:
-            printf("enter the element: ");
-            scanf("%d", &element);
-            insert_last(head2, element);
-            break;
-        case 4:
-            delete_last(head2);
-            break;
-        case 5:
-            check();
-            break;
-        case 99:
-            return 0;
-        default:
-            printf("invalid option");
-        }
-    }
+    struct node* newNode;
+    struct node* head1 = (struct node*)malloc(sizeof(struct node));
+    head1->data = 10;
+    struct node* head2 = (struct node*)malloc(sizeof(struct node));
+    head2->data = 3;
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 6;
+    head2->next = newNode;
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 9;
+    head2->next->next = newNode;
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 15;
+    head1->next = newNode;
+    head2->next->next->next = newNode;
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 30;
+    head1->next->next = newNode;
+    head1->next->next->next = NULL;
+    struct node* intersectionPoint = getintersection(head1, head2);
+    if (!intersectionPoint)
+        printf(" No Intersection Point \n");
+    else
+        printf("Intersection Point: %d\n", intersectionPoint->data);
 }
